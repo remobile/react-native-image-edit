@@ -1,0 +1,29 @@
+{
+    "name": "@remobile/react-native-image-edit",
+    "version": "1.0.0",
+    "description": "A image edit module for react-native support for ios and android",
+    "main": "index.js",
+    "author": {
+        "name": "YunJiang.Fang",
+        "email": "42550564@qq.com"
+    },
+    "license": "MIT",
+    "keywords": [
+        "react-native",
+        "react-component",
+        "ios",
+        "android",
+        "image",
+        "edit",
+        "remobile",
+        "mobile"
+    ],
+    "homepage": "https://github.com/remobile/react-native-image-edit",
+    "bugs": {
+        "url": "https://github.com/remobile/react-native-image-edit/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/remobile/react-native-image-edit.git"
+    }
+}
