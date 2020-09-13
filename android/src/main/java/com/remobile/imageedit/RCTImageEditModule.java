@@ -27,7 +27,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.UUID;
 
 public class RCTImageEditModule extends ReactContextBaseJavaModule {
     private static final String DECODE_ERROR_TAG = "E_DECODE_ERR";
@@ -170,7 +169,15 @@ public class RCTImageEditModule extends ReactContextBaseJavaModule {
         String path = null;
         String base64String = null;
         try {
-            path = this.getReactApplicationContext().getFilesDir() + "/" + UUID.randomUUID() + extension;
+            String dirPath = this.getReactApplicationContext().getCacheDir() + "imagecropdir";
+            File dir = new File(dirPath);
+            if (!dir.exists()) {
+                dir.mkdirs();
+            }
+            for (File child : dir.listFiles()) {
+                child.delete();
+            }
+            path = dirPath + "/crop" + extension;
             out = new FileOutputStream(path);
             bmp.compress(compressFormat, compressionQuality, out);
 

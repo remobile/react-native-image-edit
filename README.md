@@ -1,21 +1,21 @@
-# React Native Toast (remobile)
-A android like toast for react-native support for ios and android
+# React Native ImageEdit (remobile)
+A image edit for react-native support for ios and android
 
 ## Installation
 ```sh
-npm install @remobile/react-native-toast --save
+npm install @remobile/react-native-image-edit --save
 ```
 
 ### Installation (iOS)
-* Drag RCTToast.xcodeproj to your project on Xcode.
-* Click on your main project file (the one that represents the .xcodeproj) select Build Phases and drag libRCTToast.a from the Products folder inside the RCTToast.xcodeproj.
+* Drag RCTImageEdit.xcodeproj to your project on Xcode.
+* Click on your main project file (the one that represents the .xcodeproj) select Build Phases and drag libRCTImageEdit.a from the Products folder inside the RCTImageEdit.xcodeproj.
 * Look for Header Search Paths and make sure it contains both $(SRCROOT)/../../../react-native/React as recursive.
 
 ### Installation (Android)
 ```gradle
 ...
-include ':react-native-toast'
-project(':react-native-toast').projectDir = new File(settingsDir, '../node_modules/@remobile/react-native-toast/android')
+include ':react-native-image-edit'
+project(':react-native-image-edit').projectDir = new File(settingsDir, '../node_modules/@remobile/react-native-image-edit/android')
 ```
 
 * In `android/app/build.gradle`
@@ -24,7 +24,7 @@ project(':react-native-toast').projectDir = new File(settingsDir, '../node_modul
 ...
 dependencies {
     ...
-    compile project(':react-native-toast')
+    compile project(':react-native-image-edit')
 }
 ```
 
@@ -32,86 +32,41 @@ dependencies {
 
 ```java
 ......
-import com.remobile.toast.RCTToastPackage;  // <--- import
+import com.remobile.imageedit.RCTImageEditPackage;  // <--- import
 
 ......
 
 @Override
 protected List<ReactPackage> getPackages() {
    ......
-   new RCTToastPackage(),            // <------ add here
+   new RCTImageEditPackage(),            // <------ add here
    ......
 }
 
 ```
-```
-
-### Screencasts
-![ios](https://github.com/remobile/react-native-toast/blob/master/screencasts/ios.gif)
 
 ## Usage
 
 ### Example
 ```js
-var React = require('react');
-var ReactNative = require('react-native');
-var {
-    StyleSheet,
-    View,
-    Image
-} = ReactNative;
+const ImageEdit = require('@remobile/react-native-image-edit');
+......
+async doRotate (isLeft) {
+    const uri = this.state.image.uri;
+    const image = await ImageEdit.edit(uri, [ { rotate: isLeft ? -90 : 90 } ]);
+    this.setState({ image: null }, () => {
+        this.setState({ image });
+    });
+},
+async doFlip (isVertical) {
+    const uri = this.state.image.uri;
+    const image = await ImageEdit.edit(uri, [ { flip: isVertical ? { vertical: true } : { horizontal: true } } ]);
+    this.setState({ image: null }, () => {
+        this.setState({ image });
+    });
+},
 
-var Toast = require('react-native-toast');
-var Button = require('@remobile/react-native-simple-button');
-
-module.exports = React.createClass({
-    render() {
-        return (
-            <View style={styles.container}>
-                <Button onPress={Toast.show.bind(null, "this is a message")}>
-                    show
-                </Button>
-                <Button onPress={Toast.showShortTop.bind(null, "this is a message")}>
-                    showShortTop
-                </Button>
-                <Button onPress={Toast.showShortCenter.bind(null, "this is a message")}>
-                    showShortCenter
-                </Button>
-                <Button onPress={Toast.showShortBottom.bind(null, "this is a message")}>
-                    showShortBottom
-                </Button>
-                <Button onPress={Toast.showLongTop.bind(null, "this is a message")}>
-                    showLongTop
-                </Button>
-                <Button onPress={Toast.showLongCenter.bind(null, "this is a message")}>
-                    showLongCenter
-                </Button>
-                <Button onPress={Toast.showLongBottom.bind(null, "this is a message")}>
-                    showLongBottom
-                </Button>
-            </View>
-        );
-    },
-});
-
-
-var styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        backgroundColor: 'transparent',
-        paddingVertical:150,
-    }
-});
 ```
-
-### HELP
-* look https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin
-
-
-### thanks
-* this project come from https://github.com/EddyVerbruggen/Toast-PhoneGap-Plugin
 
 ### see detail use
 * https://github.com/remobile/react-native-template

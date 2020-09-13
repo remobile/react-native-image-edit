@@ -5,7 +5,7 @@ const {
     NativeModules,
 } = ReactNative;
 
-const RCTImageEdit = NativeModules.RCTImageEdit;
+const RCTImageEdit = NativeModules.ImageEdit;
 
 export async function edit(uri, actions = [], { format = 'jpeg', ...rest } = {}) {
     return await RCTImageEdit.edit(uri, actions, { format, ...rest });
