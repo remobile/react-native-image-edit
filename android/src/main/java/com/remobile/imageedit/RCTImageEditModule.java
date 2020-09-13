@@ -169,7 +169,7 @@ public class RCTImageEditModule extends ReactContextBaseJavaModule {
         String path = null;
         String base64String = null;
         try {
-            String dirPath = this.getReactApplicationContext().getCacheDir() + "imagecropdir";
+            String dirPath = this.getReactApplicationContext().getCacheDir() + "/imagecropdir";
             File dir = new File(dirPath);
             if (!dir.exists()) {
                 dir.mkdirs();

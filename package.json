@@ -1,6 +1,6 @@
 {
     "name": "@remobile/react-native-image-edit",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A image edit module for react-native support for ios and android",
     "main": "index.js",
     "author": {
